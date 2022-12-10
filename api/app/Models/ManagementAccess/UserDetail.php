@@ -106,6 +106,16 @@ class UserDetail extends Model
         );
     }
 
+    protected function contact(): Attribute
+    {
+        return Attribute::make(
+            set: function ($value) {
+                $value = $value[0] == "0" ? substr_replace($value, "+62", 0, 1) : $value;
+                return str_replace(array('(', ')', ' '), '', $value);
+            },
+        );
+    }
+
 
 
     public function user()
