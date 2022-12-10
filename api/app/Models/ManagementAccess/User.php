@@ -4,6 +4,7 @@ namespace App\Models\ManagementAccess;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Operational\Store;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\ManagementAccess\Role;
 use Illuminate\Notifications\Notifiable;
@@ -70,5 +71,10 @@ class User extends Authenticatable
     public function assignRole(int $role)
     {
         $this->role()->sync($role, false);
+    }
+
+    public function store()
+    {
+        return $this->hasOne(Store::class, 'user_id');
     }
 }

@@ -13,7 +13,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
-    protected $totalUser = 20;
+    protected $totalUser = 10;
     protected $array = [
         [
             'email'    => 'superadmin@gmail.com',
@@ -69,9 +69,9 @@ class UserSeeder extends Seeder
             $userDetail = [
                 'first_name'  => $faker->firstName,
                 'last_name'   => $faker->lastName,
-                "birthdate"   => $faker->date(),
+                "birthdate"   => $faker->date('Y-m-d'),
                 "gender"      => $faker->numberBetween(1, 2),
-                "address"     => $faker->streetName(),
+                "address"     => "Jalan " . $faker->streetName(),
                 "province"    => $indo->provinceName,
                 "city"        => $indo->cityName,
                 "district"    => $indo->districtName,

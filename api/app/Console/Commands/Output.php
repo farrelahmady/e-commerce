@@ -89,7 +89,12 @@ class Output extends Command
 
         $res = Http::get("https://source.unsplash.com/640x480?people");
         // var_dump(file_get_contents($res->body()));
-        Storage::disk('public')->put('user/output.jpg', $res);
+        $sellers = User::with("detail")->whereHas('role', function ($query) {
+            $query->where('role_id', 3);
+        })->get();
+        $faker = fake("id_ID");
+        echo ltrim($faker->hexColor(), "#");
+        Storage::put('output.json', $sellers);
         // Storage::disk('public')->allDirectories();
         // Storage::delete("dummy/output.jpg");
         // Storage::put('output.jpg', $res);
