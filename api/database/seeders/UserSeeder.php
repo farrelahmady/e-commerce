@@ -80,11 +80,13 @@ class UserSeeder extends Seeder
                 "contact"     => $faker->phoneNumber,
             ];
 
-            $getImage = Http::get("https://source.unsplash.com/640x480?people")->body();
-            $imageName = $userDetail['first_name'] . '-' . $userDetail['last_name'] . '.jpg';
-            Storage::disk('public')->put("user/$imageName", $getImage);
+            // $getImage = Http::get("https://source.unsplash.com/640x480?people")->body();
+            // $imageName = $userDetail['first_name'] . '-' . $userDetail['last_name'] . '.jpg';
+            // Storage::disk('public')->put("user/$imageName", $getImage);
 
-            $userDetail["profile"] = asset("storage/user/$imageName");
+            // $userDetail["profile"] = asset("storage/user/$imageName");
+
+            $userDetail["profile"] = "https://via.placeholder.com/150/" . ltrim($faker->hexColor(), "#") . "?text=" . str_replace(" ", "+", $userDetail['first_name'] . " " . $userDetail['last_name']);
 
             $user->detail()->create($userDetail);
         }

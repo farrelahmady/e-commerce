@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->uuid()->primary();
             $table->foreignUuid('store_id')->constrained('stores')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->text('thumbnail')->nullable();
             $table->string('name');
             $table->enum("status", [1, 2])->default(1);
             $table->float('weight')->default(1);

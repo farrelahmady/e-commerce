@@ -59,4 +59,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class, 'products_tags');
     }
+
+    public function thumbnail()
+    {
+        return $this->hasOne(ProductImage::class, 'thumbnail');
+    }
 }

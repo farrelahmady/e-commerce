@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('product_images', function (Blueprint $table) {
             $table->uuid()->primary();
             $table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->text('url');
             $table->timestamps();
+        });
+
+        Schema::table("products", function (Blueprint $table) {
+            $table->foreignUuid('thumbnail')->nullable()->constrained("product_images")->cascadeOnDelete()->cascadeOnUpdate()->after('name');
         });
     }
 
